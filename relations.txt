@@ -1,0 +1,62 @@
+
+# Relações e Estrutura das Classes Implementadas no Pacote 'jogovelha'
+
+O projeto segue uma arquitetura baseada em Programação Orientada a Objetos,
+com foco na separação clara de responsabilidades entre as classes.
+
+## 1. Hierarquia da Classe Jogador
+
+├── Jogador (Classe Abstrata)
+├── JogadorHumano (Subclasse)
+└── JogadorComputador (Subclasse)
+
+## 2. Descrição das Relações entre Classes
+
+### JogoVelha (Classe Principal):
+
+├── Relação com Tabuleiro: A classe JogoVelha contém um objeto 'Tabuleiro', que
+│   é usado para gerenciar as jogadas e exibir o estado do jogo. O JogoVelha
+│   coordena a interação entre os jogadores e o tabuleiro.
+│
+└── Relação com Jogador: A classe JogoVelha contém uma lista de dois objetos 'Jogador',
+    que podem ser instâncias de 'JogadorHumano' ou 'JogadorComputador'. Ela alterna os
+    turnos entre os jogadores e solicita os seus respectivos lances.
+
+### Tabuleiro (Componente do Pacote):
+
+├── Funcionalidade: A classe JogoVelha possui um 'Tabuleiro', que armazena o estado do
+│   jogo como uma matriz 3x3. Cada casa pode ser preenchida com o símbolo de um jogador.
+│
+└── Relações:
+    ├──'marcar_casa()': Atualiza o tabuleiro com a jogada do jogador.
+    └──'imprimir_tabuleiro()': Exibe o estado atual do tabuleiro com números de linha e coluna
+                               para auxiliar os jogadores.
+
+### Jogador (Classe Abstrata):
+
+├── Funcionalidade: A classe Jogador define a interface comum para todos os jogadores. Ela possui
+│                   o método abstrato 'fazer_jogadas()', que é implementada nas subclasses.
+│
+└── Relações: Fornece uma estrutura básica para as subclasses 'JogadorHumano' e 'JogadorComputador'.
+
+### JogadorHumano (Subclasse de Jogador):
+
+└── Implementação de Jogada: A casse JogadorHumano solicita a jogada diretamente ao usuária via input,
+                             ele verifica a disponibilidade de casa no tabuleiro antes de marcar a jogada.
+
+### JogadorComputador (Subclasse de Jogador):
+
+└── Implementação de Jogada Aleatória: A casse JogadorComputador faz jogadas aleatórias, selecionando
+                                       uma casa vazia no tabuleiro. Ele implementa a lógica de jogadas
+                                       automáticas, com a estratégia padrão 'aleatória'.
+
+## 3. Fluxo de Execução do Pacote
+
+### ─ Inicío do Jogo: Dois Jogadores (Humanos ou Computador) são criados e passados para o objeto 'JogoVelha'.
+### ─ Ciclo de Turnos: A Classe 'JogoVelha' controla o turno. Em cada rodada, chama o método 'fazer_jogada' do jogador atual.
+### ─ Marcação e Validação: A jogada é validada pelo 'Tabuleiro'. Se o lance for válido, a casa é marcada com o símbolo do jogador.
+### ─ Verificação de Fim de Jogo: Após cada jogada, a classe 'JogoVelha' chama o método 'checar_fim_de_jogo' para verificar se
+                                  há um vencedor ou se houve um empate.
+
+Por fim, é importante ressaltar que o projeto está organizado com o arquivo __init__.py para facilitar a importação
+dos módulos.

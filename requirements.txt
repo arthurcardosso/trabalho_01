@@ -1,0 +1,3 @@
+
+# Pacote requer Python 3.8 ou superior para que seja executado em ambientes Python compatíveis.
+python >= 3.8
